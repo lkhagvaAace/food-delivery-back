@@ -6,7 +6,6 @@ export const createFood = async (req: Request, res: Response) => {
     const food = JSON.parse(req.body.newFood);
     const { name, category, ingredients, price, isSale } = food;
     const url = await uploadImg(req.file);
-    console.log(url);
     const newFood = await Food.create({
       name: name,
       category: category,
@@ -15,7 +14,6 @@ export const createFood = async (req: Request, res: Response) => {
       isSale: isSale,
       img: url,
     });
-    console.log(name, category, ingredients, price, isSale, req.body);
     return res.status(201).json({ message: `${newFood.id}` });
   } catch (error) {
     console.error("error in createFood", error);
@@ -43,7 +41,6 @@ const uploadImg = async (img: any) => {
     try {
       const newImage = await cloudinary.uploader.upload(uploadedFile.path);
       const image = new Food({ img: newImage.secure_url });
-      await image.save();
       return image.img;
     } catch (error) {
       console.error(error);

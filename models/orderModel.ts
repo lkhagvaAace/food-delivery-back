@@ -3,7 +3,7 @@ import { ObjectId } from "mongoose";
 
 const orderSchema = new Schema({
   userId: {
-    type: Schema.Types.ObjectId,
+    type: Schema.ObjectId,
     ref: "User",
     required: true,
   },
@@ -14,7 +14,7 @@ const orderSchema = new Schema({
     type: String,
     enum: ["Waiting", "Progress", "Delivered"],
   },
-  createdDate: Date,
+  createdDate: String,
   district: String,
   khoroo: String,
   apartment: String,

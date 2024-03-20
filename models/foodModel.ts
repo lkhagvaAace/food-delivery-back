@@ -2,7 +2,7 @@ import mongoose, { Schema, model } from "mongoose";
 
 const foodSchema = new Schema({
   name: String,
-  category: String,
+  category: { type: Schema.ObjectId, ref: "Category", required: true },
   ingredients: String,
   price: Number,
   isSale: Object || Boolean,
