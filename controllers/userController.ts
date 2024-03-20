@@ -6,7 +6,6 @@ import dotenv from "dotenv";
 import { Response, Request } from "express";
 import nodemailer from "nodemailer";
 import cloudinary from "../utils/Cloudinary";
-import { url } from "inspector";
 
 const app = express();
 dotenv.config();
