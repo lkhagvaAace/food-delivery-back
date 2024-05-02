@@ -14,6 +14,12 @@ const orderSchema = new Schema({
     type: String,
     enum: ["Waiting", "Progress", "Delivered"],
   },
+  paymentStatus: {
+    type: String,
+    enum: ["PAID", "NOTPAID"],
+    default: "NOTPAID",
+  },
+  invoiceId: String,
   createdDate: String,
   district: String,
   khoroo: String,

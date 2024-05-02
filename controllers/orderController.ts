@@ -22,7 +22,7 @@ export const createOrder = async (req: AuthenticatedRequest, res: Response) => {
       khoroo: "4",
       apartment: "Viva",
     });
-    return res.status(201).json({ message: `${order.orderNumber}` });
+    return res.status(201).json({ id: order._id });
   } catch (error) {
     console.error("error in createOrder", error);
     return res.status(400).json({ message: "Failed to createOrder" });
