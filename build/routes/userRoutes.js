@@ -2,5 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userRouter = void 0;
 const express_1 = require("express");
+const userController_1 = require("../controllers/userController");
 exports.userRouter = (0, express_1.Router)();
-exports.userRouter.get("/getUsers").post("/createUser");
+exports.userRouter.route("/createUser").post(userController_1.createUser);
+exports.userRouter.route("/changePassword").put(userController_1.changePassword);
+exports.userRouter.route("/verifyEmail").post(userController_1.verifyEmail);
+exports.userRouter.route("/login").post(userController_1.getUser);

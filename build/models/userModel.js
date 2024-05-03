@@ -7,6 +7,7 @@ const userSchema = new mongoose_1.Schema({
     password: String,
     phoneNumber: Number,
     role: { type: String, enum: ["Admin", "User"] },
+    avatarImg: String,
 });
 const User = (0, mongoose_1.model)("User", userSchema);
 exports.default = User;

@@ -1,32 +1,12 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderModel = void 0;
-const mongoose_1 = __importStar(require("mongoose"));
-exports.OrderModel = mongoose_1.default.model("Order", new mongoose_1.Schema({
-    userId: mongoose_2.ObjectId,
+const mongoose_1 = require("mongoose");
+const orderSchema = new mongoose_1.Schema({
+    userId: {
+        type: mongoose_1.Schema.ObjectId,
+        ref: "User",
+        required: true,
+    },
     orderNumber: Number,
     foods: Array,
     totalPrice: Number,
@@ -34,8 +14,16 @@ exports.OrderModel = mongoose_1.default.model("Order", new mongoose_1.Schema({
         type: String,
         enum: ["Waiting", "Progress", "Delivered"],
     },
-    createdDate: Date,
+    paymentStatus: {
+        type: String,
+        enum: ["PAID", "NOTPAID"],
+        default: "NOTPAID",
+    },
+    invoiceId: String,
+    createdDate: String,
     district: String,
     khoroo: String,
     apartment: String,
-}));
+});
+const Order = (0, mongoose_1.model)("Order", orderSchema);
+exports.default = Order;
