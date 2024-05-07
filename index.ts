@@ -17,7 +17,7 @@ import { categoryRouter } from "./routes/categoryRoutes";
 import Order from "./models/orderModel";
 const app = express();
 connectToDB();
-app.use(bodyParser.json(), cors());
+app.use(express.json(), cors());
 app.use("", userRouter);
 app.use("", orderRouter);
 app.use("", foodRouter);
